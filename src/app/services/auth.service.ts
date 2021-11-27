@@ -10,8 +10,8 @@ export class AuthService {
 
   private spotifyUrl = "https://api.spotify.com/v1/me/playlists";
   private redirect_uri = "http://127.0.0.1:4200/login";
-  private clientId = "216e1a5864a44b8ba5c325df627d7ace";
-  private clientSecret = "a386974ef5d14fe69e5d9282c21bd6ed";
+  private clientId = "";
+  private clientSecret = "";
 
   constructor(
     private http: HttpClient
