@@ -6,18 +6,24 @@
       "imagePath": ""
     },
     {
-      "id": 2,
-      "name": "Child",
-      "imagePath": ""
+      "name": "Capim Cubano",
+      "id": 2
     },
     {
-      "id": 3,
-      "name": "Latino",
-      "imagePath": ""
+      "name": "Pagodinho",
+      "id": 3
     },
     {
       "name": "RocknRoll",
       "id": 4
+    },
+    {
+      "name": "Brega Funk",
+      "id": 5
+    },
+    {
+      "imagePath": "",
+      "id": 6
     }
   ]
 }

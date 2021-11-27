@@ -1,7 +1,19 @@
 <h1> Playlists </h1>
 
 <div>
-  <button class="button" style="color: black;">Criar Nova Playlist</button>
+  <button (click)="onCreatePlaylist()" class="button" style="color: black;">Criar Nova Playlist</button>
+</div>
+
+<div *ngIf="showForm">
+    <form [formGroup]="playlistForm" (ngSubmit)="createPlaylist()">
+        <div>
+            <!-- <label for="name"></label> -->
+            <input type="text" id="name" formControlName="name" style="color: black">
+        </div>
+        <button type="submit" style="color: black">
+            Criar Playlist
+        </button>
+    </form>
 </div>
 
 

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Playlist } from 'src/app/models/playlist.model';
 import { SpotifyService } from 'src/app/services/spotify.service';
@@ -12,6 +13,11 @@ export class PlaylistEditItemComponent implements OnInit {
 
   id!: number;
   playlist!: Playlist | undefined;
+  editFormOpen: boolean = false;
+
+  playlistForm: FormGroup = new FormGroup({
+    name: new FormControl(null)
+  });
 
   constructor(
     private route: ActivatedRoute,
@@ -34,6 +40,24 @@ export class PlaylistEditItemComponent implements OnInit {
       })
       console.log('PLAYLIST NO EDIT ITEM');
       console.log(this.playlist);
+    })
+  }
+
+  onDeletePlaylist() {
+    this.spotifyService.deletePlaylistFromServer(this.id).subscribe((p) => {
+      console.log(p);
+      this.spotifyService.playlistChanged.next(p)
+    })
+  }
+
+  onEditPlaylist() {
+    this.editFormOpen = true;
+    // this.spotifyService.updatePlaylistFromServer(this.id, )
+  }
+
+  updatePlaylist() {
+    this.spotifyService.updatePlaylistFromServer(this.id, this.playlistForm.value).subscribe((p) => {
+      this.spotifyService.playlistChanged.next(p)
     })
   }
 
