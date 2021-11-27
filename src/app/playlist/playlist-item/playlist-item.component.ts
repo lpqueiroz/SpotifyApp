@@ -9,7 +9,7 @@ import { Playlist } from 'src/app/models/playlist.model';
 })
 export class PlaylistItemComponent implements OnInit {
 
-  @Input() playlist!: Playlist;
+  @Input() playlist!: any;
 
   constructor(
     private route: ActivatedRoute,

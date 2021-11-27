@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Playlist } from '../models/playlist.model';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
+import { Token } from '../models/token.model';
+import { PlaylistSpotify } from '../models/playlist-spotify.model';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +11,10 @@ import { Observable, Subject } from 'rxjs';
 export class SpotifyService {
 
   private baseUrl = "http://localhost:30001/playlists";
+  private spotifyUrl = "https://api.spotify.com/v1/me/playlists";
+  private redirect_uri = "http://127.0.0.1:4200/login";
+  private clientId = "";
+  private clientSecret = "";
 
   // private playlists: Playlist[] = [
   //   new Playlist(1, 'Pop', ''),
@@ -51,4 +57,15 @@ export class SpotifyService {
   updatePlaylistFromServer(id: number, form: {name: string, imagePath: ''}) {
     return this.http.put<Playlist>(`${this.baseUrl}/${id}`, form);
   }
+
+  getPlaylistsFromSpotify() {
+    const access_token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set(
+      'Content-Type', 'application/json').set(
+        'Authorization', 'Bearer ' + access_token 
+      );
+
+     return this.http.get<PlaylistSpotify>(this.spotifyUrl, { headers: headers });
+  }
+
 }

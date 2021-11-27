@@ -1,5 +1,6 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { PlaylistSpotify } from '../models/playlist-spotify.model';
 import { Playlist } from '../models/playlist.model';
 import { SpotifyService } from '../services/spotify.service';
 
@@ -12,7 +13,9 @@ export class PlaylistComponent implements OnInit {
 
   showForm: boolean = false;
 
-  playlists!: Playlist[];
+  // playlists!: Playlist[];
+
+  playlists!: PlaylistSpotify;
 
   // @Output()
 
@@ -27,18 +30,24 @@ export class PlaylistComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getPlaylists();
-    console.log(this.playlists);
+    // this.getPlaylists();
+    // console.log(this.playlists);
 
     this.spotifyService.playlistChanged.subscribe(() => {
       this.getPlaylists();
     })
+
+    this.spotifyService.getPlaylistsFromSpotify().subscribe(data => {
+      console.log(data);
+
+      this.playlists = data;
+    })
   }
 
   getPlaylists() {
-    this.spotifyService.getPlaylistsFromServer().subscribe((data) => {
-      this.playlists = data;
-    });
+    // this.spotifyService.getPlaylistsFromServer().subscribe((data) => {
+    //   this.playlists = data;
+    // });
   }
 
   onCreatePlaylist() {
@@ -46,12 +55,12 @@ export class PlaylistComponent implements OnInit {
   }
 
   createPlaylist() {
-    console.log(this.playlistForm);
-    this.spotifyService.createPlaylistOnServer(this.playlistForm.value.name).subscribe(() => {
-      this.spotifyService.getPlaylistsFromServer().subscribe((data) => {
-        this.playlists = data;
-      })
-    })
+    // console.log(this.playlistForm);
+    // this.spotifyService.createPlaylistOnServer(this.playlistForm.value.name).subscribe(() => {
+    //   this.spotifyService.getPlaylistsFromServer().subscribe((data) => {
+    //     this.playlists = data;
+    //   })
+    // })
   }
 
 }
