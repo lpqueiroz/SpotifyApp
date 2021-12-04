@@ -1,0 +1,29 @@
+{
+  "playlists": [
+    {
+      "id": 1,
+      "name": "Pop",
+      "imagePath": ""
+    },
+    {
+      "name": "Capim Cubano",
+      "id": 2
+    },
+    {
+      "name": "Pagodinho",
+      "id": 3
+    },
+    {
+      "name": "RocknRoll",
+      "id": 4
+    },
+    {
+      "name": "Brega Funk",
+      "id": 5
+    },
+    {
+      "imagePath": "",
+      "id": 6
+    }
+  ]
+}

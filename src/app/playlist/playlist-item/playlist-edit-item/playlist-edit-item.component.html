@@ -1,0 +1,25 @@
+<div style="padding: 100px;">
+    <h1 *ngIf="playlist">
+        Playlist {{ playlist.name }}
+    </h1>
+
+    <button class="button" (click)="onEditPlaylist()">
+        Editar
+    </button>
+
+    <div *ngIf="editFormOpen">
+        <form [formGroup]="playlistForm" (ngSubmit)="updatePlaylist()">
+            <div>
+                <!-- <label for="name"></label> -->
+                <input type="text" id="name" formControlName="name" style="color: black">
+            </div>
+            <button type="submit" style="color: black">
+                Editar Playlist
+            </button>
+        </form>
+    </div>
+
+    <button class="button" (click)="onDeletePlaylist()">
+        Deletar
+    </button>
+</div>
